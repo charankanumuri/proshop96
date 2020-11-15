@@ -58,13 +58,18 @@ const cartItemsFromStorage = localStorage.getItem('cartItems') ? JSON.parse(loca
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
 
+const savePayMentInfoFromStorage = localStorage.getItem('paymentMethod')
+	? JSON.parse(localStorage.getItem('paymentMethod'))
+	: null;
+
 const shippingAddressFromStorage = localStorage.getItem('shippingAddress')
 	? JSON.parse(localStorage.getItem('shippingAddress'))
 	: {};
 
 const initialState = {
 	cart: { cartItems: cartItemsFromStorage, shippingAddress: shippingAddressFromStorage },
-	userLogin: { userInfo: userInfoFromStorage }
+	userLogin: { userInfo: userInfoFromStorage },
+	orderPay: savePayMentInfoFromStorage
 };
 const middleware = [ thunk ];
 const store = createStore(reducer, initialState, composeWithDevTools(applyMiddleware(...middleware)));
